@@ -1,0 +1,162 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: #1e88e5;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1e88e5;
+}
+
+canvas {
+  width: 100% !important;
+  height: 350px !important;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #1e88e5;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+/* Top bar */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #1e88e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1200;
+}
+
+header {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Push dashboard down */
+.container {
+  margin-top: 100px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: -260px;
+  width: 260px;
+  height: calc(100% - 70px);
+  background: white;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+/* Sidebar open */
+.sidebar.active {
+  left: 0;
+}
+
+/* When sidebar open, push content */
+body.sidebar-open .container {
+  margin-left: 260px;
+}
+
+/* Menu button */
+.menu-btn {
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+/* Overlay (also below header) */
+.overlay {
+  position: fixed;
+  top: 70px;             /* ⬅️ IMPORTANT */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 70px);
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}

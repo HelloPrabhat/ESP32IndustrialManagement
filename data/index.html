@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motor Vibration Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <h3>System Info</h3>
+    <p><b>Motor:</b> Brushed DC Motor</p>
+    <p><b>Rated Voltage:</b> 12 V</p>
+    <p><b>Max Current:</b> 20 A</p>
+    <p><b>Vibration Sensor:</b> MPU6050</p>
+    <p><b>Current Sensor:</b> ACS712</p>
+    <p><b>Status:</b> <span id="systemStatus">Normal</span></p>
+    <hr>
+
+    <h3>Average Values</h3>
+    <p><b>Avg Vibration RMS:</b> <span id="sbAvgVibration">0.0000 g</span></p>
+    <p><b>Avg Overload (7):</b> <span id="sbAvgOverload">0.00 A</span></p>
+    <p><b>Avg Transient Voltage:</b> <span id="sbAvgTransient">0.00 V</span></p>
+
+    <p style="font-size:18px; font-weight:bold; margin-top:10px;">⏳ Estimated Remaining Life:</p>
+    <p style="font-size:26px; font-weight:bold;"><span id="remainingHours">--</span> hrs</p>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <button id="menuBtn" class="menu-btn">☰</button>
+    <header>Motor Health Monitoring Dashboard</header>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <label class="switch">
+        <input type="checkbox" id="relayToggle">
+        <span class="slider round"></span>
+      </label>
+      <span id="relayStatus" style="font-weight:bold; color:white;">OFF</span>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Live & Average RMS cards -->
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <div class="card" style="flex:1; min-width:200px;">
+        <h3>Live Vibration RMS</h3>
+        <p id="rmsValue" style="font-size:24px; color:#1e88e5;">0.0000 g</p>
+      </div>
+      <div class="card" style="flex:1; min-width:200px;">
+        <h3>Average Vibration RMS</h3>
+        <p id="avgValue" style="font-size:24px; color:#555;">0.0000 g</p>
+      </div>
+    </div>
+
+    <!-- Vibration RMS Chart -->
+    <div class="card">
+      <h2>Vibration RMS Trend</h2>
+      <canvas id="vibrationChart"></canvas>
+    </div>
+
+    <!-- Overload cards -->
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <div class="card" style="flex:1; min-width:200px;">
+        <h3>Live Operation Overload</h3>
+        <p id="overloadValue" style="font-size:24px; color:#1e88e5;">0.00 A</p>
+      </div>
+      <div class="card" style="flex:1; min-width:200px;">
+        <h3>Average Overload (Last 7)</h3>
+        <p id="avgOverload" style="font-size:24px; color:#555;">0.00 A</p>
+      </div>
+    </div>
+
+    <!-- Transient voltage cards -->
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <div class="card" style="flex:1; min-width:200px;">
+        <h3>Live Transient Voltage</h3>
+        <p id="transientValue" style="font-size:24px; color:#1e88e5;">0.00 V</p>
+      </div>
+      <div class="card" style="flex:1; min-width:200px;">
+        <h3>Average Transient Voltage (Last 60)</h3>
+        <p id="avgTransient" style="font-size:24px; color:#555;">0.00 V</p>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="script.js"></script>
+</body>
+</html>
